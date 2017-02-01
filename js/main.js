@@ -14,6 +14,7 @@ function validateForm()
 	}
 }
 
+
 /* Muestra mensaje validación*/
 function jsShow(id)
 {
@@ -27,6 +28,10 @@ function jsHide(id)
 }
 
 /* Envia Mensaje al usuario*/
+var colores =   ["rojo", "amarillo"];
+var colores = {valid:"verde", error:"rojo", normal:"blanco"};
+var estilo = {color:"coc", colorFondo:"dds", opacity:1};
+
 function producePrompt(message, promptLocation, color)
 {
 	document.getElementById(promptLocation).innerHTML = message;
@@ -36,7 +41,10 @@ function producePrompt(message, promptLocation, color)
 /* Valida Nombre*/
 function validateName()
 {
-	var name =  document.getElementById("commentName").value;
+	var inputName = document.getElementById("commentName");
+	var name =  inputName.value;
+
+	inputName.value = firstToUpperCase(name);
 
 	if (name.length == 0)
 	{
@@ -174,33 +182,15 @@ function validateInfo()
 	}
 }
 
-/* 
-(function(){
-  var inputs = document.getElementsByTagName("input");
-  for(var i=0; i < inputs.length; i++){
-     var a = inputs[i];
-     if(a.inputs !== ''){
-       a.addEventListener('mouseover',createTip);
-       a.addEventListener('mouseout',cancelTip);
-     }
-  } 
-})() 
 
-// Prepara los inputs de modo que aparesca el mensaje correspondiente cuando se posicione cursor
-function addLoadEvent(action) {
-  var initial = window.onload;
-  if (typeof window.onload != 'function') {
-    window.onload = action;
-  } else {
-    window.onload = function() {
-      initial();
-      action();
-    }
-  }
+function firstToUpperCase(_texto)
+{
+	var result = _texto[0].toUpperCase() + _texto.slice(1);
+	var mayus = result.split(" ");
+	
+	console.log(result.split(" "));
+	return result;
 }
-
-*/
-
 
 // Cargar primero el DOM para ejecutar 
 document.addEventListener ('DOMContentLoaded', 
